@@ -7,15 +7,16 @@ from jinja2 import Environment, FileSystemLoader, select_autoescape
 
 if __name__ == '__main__':
     product_from_excel = pandas.read_excel('wine3.xlsx',
-                                      sheet_name='Лист1',
-                                      na_values=['N/A', 'NA'], keep_default_na=False)
+                                            sheet_name='Лист1',
+                                            na_values=['N/A', 'NA'],
+                                            keep_default_na=False)
 
-    wines_list = product_from_excel.to_dict(orient='records')
+    wines = product_from_excel.to_dict(orient='records')
 
-    dict_of_products = collections.defaultdict(list)
+    grouped_products = collections.defaultdict(list)
 
-    for wine in wines_list:
-        dict_of_products[wine['Категория']].append(wine)
+    for wine in wines:
+        grouped_products[wine['Категория']].append(wine)
 
     env = Environment(
         loader=FileSystemLoader('.'),
@@ -26,7 +27,7 @@ if __name__ == '__main__':
 
     rendered_page = template.render(
         year=datetime.datetime.now().year - 1920,
-        products=dict_of_products)
+        products=grouped_products)
 
     with open('index.html', 'w', encoding="utf8") as file:
         file.write(rendered_page)

@@ -6,11 +6,11 @@ from jinja2 import Environment, FileSystemLoader, select_autoescape
 
 
 if __name__ == '__main__':
-    excel_data_df = pandas.read_excel('wine3.xlsx',
+    product_from_excel = pandas.read_excel('wine3.xlsx',
                                       sheet_name='Лист1',
                                       na_values=['N/A', 'NA'], keep_default_na=False)
 
-    wines_list = excel_data_df.to_dict(orient='records')
+    wines_list = product_from_excel.to_dict(orient='records')
 
     dict_of_products = collections.defaultdict(list)
 

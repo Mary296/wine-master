@@ -26,7 +26,7 @@ if __name__ == '__main__':
     template = env.get_template('template.html')
 
     rendered_page = template.render(
-        year=datetime.datetime.now().year - 1920,
+        winery_age=datetime.datetime.now().year - 1920,
         products=grouped_products)
 
     with open('index.html', 'w', encoding="utf8") as file:

@@ -5,6 +5,8 @@ from http.server import HTTPServer, SimpleHTTPRequestHandler
 from jinja2 import Environment, FileSystemLoader, select_autoescape
 
 
+WINERY_OPENING_YEAR = 1920
+
 if __name__ == '__main__':
     product_from_excel = pandas.read_excel('wine3.xlsx',
                                             sheet_name='Лист1',
@@ -26,7 +28,7 @@ if __name__ == '__main__':
     template = env.get_template('template.html')
 
     rendered_page = template.render(
-        winery_age=datetime.datetime.now().year - 1920,
+        winery_age=datetime.datetime.now().year - WINERY_OPENING_YEAR,
         products=grouped_products)
 
     with open('index.html', 'w', encoding="utf8") as file:

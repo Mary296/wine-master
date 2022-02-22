@@ -1,8 +1,8 @@
-from http.server import HTTPServer, SimpleHTTPRequestHandler
-from jinja2 import Environment, FileSystemLoader, select_autoescape
+import collections
 import datetime
 import pandas
-import collections
+from http.server import HTTPServer, SimpleHTTPRequestHandler
+from jinja2 import Environment, FileSystemLoader, select_autoescape
 
 
 if __name__ == '__main__':

@@ -11,11 +11,13 @@ WINERY_OPENING_YEAR = 1920
 
 if __name__ == '__main__':
 
-    # parser = argparse.ArgumentParser()
-    # parser.add_argument('way', help='Путь к файлу')
-    # args = parser.parse_args()
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--foo', default='products.xlsx')
+    args = parser.parse_args()
+    print(args)
 
-    product_from_excel = pandas.read_excel('products.xlsx',
+
+    product_from_excel = pandas.read_excel(args,
                                             sheet_name='Лист1',
                                             na_values=['N/A', 'NA'],
                                             keep_default_na=False)

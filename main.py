@@ -1,3 +1,4 @@
+import argparse
 import collections
 import datetime
 import pandas
@@ -7,8 +8,14 @@ from jinja2 import Environment, FileSystemLoader, select_autoescape
 
 WINERY_OPENING_YEAR = 1920
 
+
 if __name__ == '__main__':
-    product_from_excel = pandas.read_excel('wine3.xlsx',
+
+    # parser = argparse.ArgumentParser()
+    # parser.add_argument('way', help='Путь к файлу')
+    # args = parser.parse_args()
+
+    product_from_excel = pandas.read_excel('products.xlsx',
                                             sheet_name='Лист1',
                                             na_values=['N/A', 'NA'],
                                             keep_default_na=False)

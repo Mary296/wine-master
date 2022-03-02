@@ -1,10 +1,12 @@
 import argparse
 import collections
 import datetime
-import pandas
-from http.server import HTTPServer, SimpleHTTPRequestHandler
-from jinja2 import Environment, FileSystemLoader, select_autoescape
 
+from http.server import HTTPServer, SimpleHTTPRequestHandler
+
+import pandas
+
+from jinja2 import Environment, FileSystemLoader, select_autoescape
 
 WINERY_OPENING_YEAR = 1920
 
@@ -15,12 +17,8 @@ if __name__ == '__main__':
     parser.add_argument('--file_path', default='products.xlsx')
     args = parser.parse_args()
 
-    product_from_excel = pandas.read_excel(args.file_path,
-                                            sheet_name='Лист1',
-                                            na_values=['N/A', 'NA'],
-                                            keep_default_na=False)
-
-    wines = product_from_excel.to_dict(orient='records')
+    wines = pandas.read_excel(args.file_path, sheet_name='Лист1', na_values=['N/A', 'NA'], keep_default_na=False)\
+        .to_dict(orient='records')
 
     grouped_products = collections.defaultdict(list)
 
